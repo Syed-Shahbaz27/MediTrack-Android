@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MediTrack</string>
+    <string name="app_tagline">Your health, managed smartly</string>
+    <string name="app_heart">MediTrack ❤</string>
+
+    <!-- Auth -->
+    <string name="btn_login">LOG IN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="lbl_create_account">Create Account</string>
+    <string name="lbl_welcome_back">Welcome Back!</string>
+    <string name="lbl_sign_in">Sign in to Continue</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_email">Email Address</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm">Confirm Password</string>
+    <string name="hint_emergency">Emergency Contact Number</string>
+    <string name="lbl_terms">Agree to terms and conditions</string>
+    <string name="lbl_remember">Remember Me</string>
+    <string name="lbl_have_account">Already have an account? Log In</string>
+    <string name="lbl_no_account">Don\'t have an account? Register!</string>
+    <string name="lbl_forgot">Forgot Password?</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_meds">Meds</string>
+    <string name="nav_appointments">Appointments</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_logout">Logout</string>
+    <string name="nav_team">Team Members</string>
+    <string name="nav_contact">Contact Us</string>
+    <string name="nav_pharmacy">Pharmacy</string>
+    <string name="nav_emergency">Emergency</string>
+
+    <!-- Medications -->
+    <string name="title_my_medications">My Medications</string>
+    <string name="title_add_medication">Add Medication</string>
+    <string name="hint_med_name">Medication Name</string>
+    <string name="hint_dosage">Dosage (e.g. 500mg)</string>
+    <string name="hint_frequency">Frequency</string>
+    <string name="hint_reminder">Reminder Time</string>
+    <string name="hint_notes">Notes (Optional)</string>
+    <string name="btn_save_medication">SAVE MEDICATION</string>
+
+    <!-- Appointments -->
+    <string name="title_appointments">My Appointments</string>
+    <string name="title_add_appointment">Add Appointment</string>
+    <string name="hint_doctor_name">Doctor Name</string>
+    <string name="hint_specialty">Specialty</string>
+    <string name="hint_clinic">Clinic Location</string>
+    <string name="hint_apt_date">Appointment Date</string>
+    <string name="hint_apt_time">Appointment Time</string>
+    <string name="btn_save_appointment">SAVE APPOINTMENT</string>
+
+    <!-- Health Metrics -->
+    <string name="title_health_metrics">Health Metrics</string>
+    <string name="hint_bp">Blood Pressure (e.g. 120/80)</string>
+    <string name="hint_glucose">Blood Glucose (mg/dL)</string>
+    <string name="hint_weight">Weight (kg)</string>
+    <string name="btn_save_data">SAVE DATA</string>
+
+    <!-- Pharmacy -->
+    <string name="title_pharmacy">Nearby Pharmacies</string>
+    <string name="gps_using">Using your Current GPS location</string>
+
+    <!-- Emergency -->
+    <string name="title_emergency">Emergency Alert</string>
+    <string name="sos_instruction">Press and Hold to send Emergency Alert</string>
+    <string name="sos_sent">Alert sent Via Bluetooth to emergency contacts</string>
+    <string name="btn_sos">SOS</string>
+
+    <!-- Team -->
+    <string name="title_team">Team Members</string>
+    <string name="title_contact">Contact Us</string>
+    <string name="title_forgot">Forgot Password</string>
+</resources>
