@@ -1,24 +1,20 @@
 package com.meditrack.app;
 
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import com.meditrack.app.utils.SessionManager;
 
+/** Temporary stub — replaced on Day 3 with full dashboard */
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        TextView tv = new TextView(this);
+        SessionManager session = new SessionManager(this);
+        tv.setText("Login successful! Welcome, " + session.getUserName());
+        tv.setTextSize(20f);
+        tv.setPadding(60, 200, 60, 60);
+        setContentView(tv);
     }
 }

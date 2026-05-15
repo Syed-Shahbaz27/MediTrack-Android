@@ -1,9 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MediTrack" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!--
+        NoActionBar — we build custom toolbars in every activity XML
+        so we don't want Android drawing its own action bar on top.
+        MaterialComponents gives us TextInputLayout, MaterialButton etc.
+    -->
+    <style name="Theme.MediTrack" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/teal_primary</item>
+        <item name="colorPrimaryVariant">@color/teal_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/soft_green</item>
+        <item name="colorOnSecondary">@color/dark_grey</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/teal_dark</item>
+        <item name="android:windowBackground">@color/white</item>
+
+        <!-- TextInputLayout default style — outlined box matching prototype -->
+        <item name="textInputStyle">@style/MediTrack.TextInput</item>
     </style>
 
-    <style name="Theme.MediTrack" parent="Base.Theme.MediTrack" />
+    <!-- Custom TextInputLayout style — green stroke matching prototype -->
+    <style name="MediTrack.TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/soft_green</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="hintTextColor">@color/teal_primary</item>
+        <item name="android:paddingTop">4dp</item>
+    </style>
+
+    <!-- SOS Button style — only for the Emergency screen -->
+    <style name="MediTrack.SosButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/sos_red</item>
+        <item name="cornerRadius">100dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
