@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    RegisterActivity Layout — matches prototype Screen 2.
-    Uses TextInputLayout (Material) for green-bordered fields with icons.
-    Full validation is handled in RegisterActivity.java.
--->
+    <!--
+        SplashActivity Layout — the Welcome/Landing screen.
+        This is the first thing users see. Matches prototype Screen 1 exactly.
+        Session check happens in Java — if already logged in, this never shows.
+    -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
 
-    <!-- ── Teal Toolbar ────────────────────────────────────────── -->
+    <!-- ── Teal Header Bar ─────────────────────────────────────── -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/teal_primary"
         android:orientation="horizontal"
-        android:padding="12dp"
+        android:padding="16dp"
         android:gravity="center_vertical">
 
-        <!-- Back arrow -->
         <TextView
-            android:id="@+id/btnBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="←"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true"/>
+            android:text="💊"
+            android:textSize="24sp"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="0dp"
@@ -43,11 +37,15 @@
             android:textStyle="bold"
             android:gravity="center"/>
 
-        <!-- Spacer to balance back arrow -->
-        <View android:layout_width="40dp" android:layout_height="40dp"/>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="📋"
+            android:textSize="24sp"
+            android:gravity="center"/>
     </LinearLayout>
 
-    <!-- ── Scrollable Form ─────────────────────────────────────── -->
+    <!-- ── Scrollable Content ──────────────────────────────────── -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -58,161 +56,86 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="28dp"
-            android:paddingBottom="28dp">
+            android:paddingHorizontal="28dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="28dp"
+            android:gravity="center_horizontal">
 
-            <!-- Title -->
+            <!-- Welcome Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_create_account"
-                android:textSize="28sp"
+                android:text="Welcome to\nMediTrack"
+                android:textSize="36sp"
                 android:textStyle="bold"
                 android:textColor="@color/dark_grey"
-                android:layout_marginBottom="24dp"/>
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.1"/>
 
-            <!-- Full Name field -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilFullName"
-                style="@style/MediTrack.TextInput"
-                android:layout_width="match_parent"
+            <!-- Tagline -->
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_full_name"
-                app:startIconDrawable="@drawable/ic_person"
-                app:startIconTint="@color/medium_grey"
-                android:layout_marginBottom="16dp">
+                android:text="@string/app_tagline"
+                android:textSize="16sp"
+                android:textColor="@color/medium_grey"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="36dp"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFullName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:imeOptions="actionNext"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Email field -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmail"
-                style="@style/MediTrack.TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_email"
-                app:startIconDrawable="@drawable/ic_email"
-                app:startIconTint="@color/medium_grey"
-                android:layout_marginBottom="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:imeOptions="actionNext"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Password field — endIconMode shows the eye toggle for free -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPassword"
-                style="@style/MediTrack.TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_password"
-                app:startIconDrawable="@drawable/ic_lock"
-                app:startIconTint="@color/medium_grey"
-                app:endIconMode="password_toggle"
-                app:endIconTint="@color/medium_grey"
-                android:layout_marginBottom="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:imeOptions="actionNext"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Confirm Password field -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilConfirmPassword"
-                style="@style/MediTrack.TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_confirm"
-                app:startIconDrawable="@drawable/ic_lock"
-                app:startIconTint="@color/medium_grey"
-                app:endIconMode="password_toggle"
-                app:endIconTint="@color/medium_grey"
-                android:layout_marginBottom="24dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etConfirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:imeOptions="actionDone"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Terms and Conditions checkbox -->
+            <!-- Medication Images (emoji stand-ins matching prototype) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="28dp">
-
-                <CheckBox
-                    android:id="@+id/cbTerms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/teal_primary"/>
+                android:gravity="center"
+                android:layout_marginBottom="48dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_terms"
-                    android:textSize="15sp"
-                    android:textColor="@color/dark_grey"
-                    android:layout_marginStart="8dp"/>
+                    android:layout_weight="1"
+                    android:text="💊"
+                    android:textSize="72sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="💉"
+                    android:textSize="72sp"
+                    android:gravity="center"/>
             </LinearLayout>
 
-            <!-- REGISTER Button -->
+            <!-- LOG IN Button — filled teal, matches prototype -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegister"
+                android:id="@+id/btnGoToLogin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="@string/btn_register"
+                android:text="@string/btn_login"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/teal_primary"
                 app:cornerRadius="30dp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="16dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"/>
 
-            <!-- Link to Login -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbl_have_account"
-                android:textSize="15sp"
-                android:textColor="@color/dark_grey"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginBottom="12dp"/>
-
-            <!-- LOG IN outline button -->
+            <!-- REGISTER Button — outline style, matches prototype -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnGoToLogin"
+                android:id="@+id/btnGoToRegister"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="@string/btn_login"
-                android:textSize="16sp"
+                android:layout_height="60dp"
+                android:text="@string/btn_register"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/teal_primary"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:strokeColor="@color/teal_primary"
                 app:strokeWidth="2dp"
-                app:cornerRadius="28dp"/>
+                app:cornerRadius="30dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"/>
 
         </LinearLayout>
     </ScrollView>

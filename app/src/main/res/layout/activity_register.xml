@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    RegisterActivity Layout — matches prototype Screen 2.
-    Uses TextInputLayout (Material) for green-bordered fields with icons.
-    Full validation is handled in RegisterActivity.java.
--->
+    <!--
+        RegisterActivity Layout — matches prototype Screen 2.
+        Uses TextInputLayout (Material) for green-bordered fields with icons.
+        Full validation is handled in RegisterActivity.java.
+    -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -87,8 +87,8 @@
                     android:id="@+id/etFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionNext"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Email field -->
@@ -217,3 +217,5 @@
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
+
+
