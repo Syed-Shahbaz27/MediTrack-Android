@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
+        Navigation Drawer Menu items.
+        Two groups — main features and account options.
+        MainActivity.java reads item IDs in onNavigationItemSelected().
+    -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/grp_main" android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Home"/>
+        <item android:id="@+id/nav_medications"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Medications"/>
+        <item android:id="@+id/nav_appointments"
+            android:icon="@android:drawable/ic_menu_today"
+            android:title="Appointments"/>
+        <item android:id="@+id/nav_health"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Health Metrics"/>
+        <item android:id="@+id/nav_pharmacy"
+            android:icon="@android:drawable/ic_menu_mapmode"
+            android:title="Pharmacy Locator"/>
+        <item android:id="@+id/nav_emergency"
+            android:icon="@android:drawable/ic_dialog_alert"
+            android:title="Emergency Alert"/>
+    </group>
+
+    <group android:id="@+id/grp_account">
+        <item android:id="@+id/nav_team"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Team Members"/>
+        <item android:id="@+id/nav_contact"
+            android:icon="@android:drawable/ic_menu_send"
+            android:title="Contact Us"/>
+        <item android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            android:title="Logout"/>
+    </group>
+
+</menu>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    TeamMembersActivity layout.
+    Required by assignment brief: "A Team Members button that on click
+    should display your name, student id and email in another activity."
+    Two cards — one per student. Module info card at bottom.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="56dp"
+        android:background="@color/teal_primary" android:orientation="horizontal"
+        android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="12dp">
+        <TextView android:id="@+id/btnBack" android:layout_width="40dp"
+            android:layout_height="40dp" android:text="←" android:textColor="@color/white"
+            android:textSize="22sp" android:gravity="center"
+            android:clickable="true" android:focusable="true"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="MediTrack ❤"
+            android:textColor="@color/white" android:textSize="20sp"
+            android:textStyle="bold" android:gravity="center"/>
+        <View android:layout_width="40dp" android:layout_height="40dp"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="20dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Team Members" android:textSize="28sp" android:textStyle="bold"
+                android:textColor="@color/teal_primary" android:layout_marginBottom="24dp"/>
+
+            <!-- Student 1 -->
+            <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:cardCornerRadius="12dp"
+                app:cardElevation="4dp" android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="20dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="👨‍💻" android:textSize="40sp" android:layout_marginBottom="8dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Syed Shahbaz Jilani" android:textSize="20sp"
+                        android:textStyle="bold" android:textColor="@color/dark_grey"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Student ID: 24901225" android:textSize="15sp"
+                        android:textColor="@color/medium_grey" android:layout_marginTop="4dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="shahbaz@majancollege.edu.om" android:textSize="14sp"
+                        android:textColor="@color/teal_primary" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Student 2 -->
+            <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:cardCornerRadius="12dp"
+                app:cardElevation="4dp" android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="20dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="👨‍💻" android:textSize="40sp" android:layout_marginBottom="8dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Muhammad Haroon" android:textSize="20sp"
+                        android:textStyle="bold" android:textColor="@color/dark_grey"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Student ID: 24901282" android:textSize="15sp"
+                        android:textColor="@color/medium_grey" android:layout_marginTop="4dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="haroon@majancollege.edu.om" android:textSize="14sp"
+                        android:textColor="@color/teal_primary" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Module Info -->
+            <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:cardCornerRadius="12dp"
+                app:cardElevation="0dp" app:cardBackgroundColor="@color/teal_primary">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="20dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Module: Mobile Application Development"
+                        android:textSize="14sp" android:textColor="@color/white"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Majan University College"
+                        android:textSize="14sp" android:textColor="@color/soft_green"
+                        android:layout_marginTop="4dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Academic Year: Feb–June 2026"
+                        android:textSize="14sp" android:textColor="@color/white"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

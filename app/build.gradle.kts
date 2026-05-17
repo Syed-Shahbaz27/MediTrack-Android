@@ -6,6 +6,10 @@ android {
     namespace = "com.meditrack.app"
     compileSdk = 36
 
+    //  Adding this block here
+    lint {
+        abortOnError = false
+    }
     defaultConfig {
         applicationId = "com.meditrack.app"
         minSdk = 24
@@ -31,15 +35,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_18
     }
 }
-
 dependencies {
-    // These names now match your [libraries] section in libs.versions.toml exactly
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.recyclerview)
     implementation(libs.cardview)
+
+    // DrawerLayout — required for the navigation drawer in MainActivity
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

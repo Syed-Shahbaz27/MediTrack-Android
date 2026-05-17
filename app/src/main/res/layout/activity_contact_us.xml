@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ContactUsActivity layout.
+    Required by assignment: "Add a contact us page to send mail."
+    Form fields for name, email, and message.
+    SEND button fires an email Intent — opens the device email app.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="56dp"
+        android:background="@color/teal_primary" android:orientation="horizontal"
+        android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="12dp">
+        <TextView android:id="@+id/btnBack" android:layout_width="40dp"
+            android:layout_height="40dp" android:text="←" android:textColor="@color/white"
+            android:textSize="22sp" android:gravity="center"
+            android:clickable="true" android:focusable="true"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="MediTrack ❤"
+            android:textColor="@color/white" android:textSize="20sp"
+            android:textStyle="bold" android:gravity="center"/>
+        <View android:layout_width="40dp" android:layout_height="40dp"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="20dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Contact Us" android:textSize="28sp" android:textStyle="bold"
+                android:textColor="@color/teal_primary" android:layout_marginBottom="6dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="We'd love to hear from you!"
+                android:textSize="14sp" android:textColor="@color/medium_grey"
+                android:layout_marginBottom="24dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilName" style="@style/MediTrack.TextInput"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="Your Name" android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:inputType="textPersonName"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmail" style="@style/MediTrack.TextInput"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="Your Email" android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:inputType="textEmailAddress"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMessage" style="@style/MediTrack.TextInput"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="Your Message" android:layout_marginBottom="28dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMessage" android:layout_width="match_parent"
+                    android:layout_height="120dp" android:inputType="textMultiLine"
+                    android:gravity="top"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSend" android:layout_width="match_parent"
+                android:layout_height="56dp" android:text="SEND MESSAGE"
+                android:textSize="16sp" android:textStyle="bold"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/teal_primary" app:cornerRadius="28dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
