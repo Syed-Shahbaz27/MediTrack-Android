@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/soft_green"
+    app:strokeWidth="1.5dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+
+        <TextView android:layout_width="40dp" android:layout_height="40dp"
+            android:text="📅" android:textSize="24sp" android:gravity="center"/>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
+            <TextView android:id="@+id/tvDoctorName"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Dr. Name" android:textSize="16sp"
+                android:textStyle="bold" android:textColor="@color/dark_grey"/>
+            <TextView android:id="@+id/tvSpecialty"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Specialty" android:textSize="13sp"
+                android:textColor="@color/medium_grey" android:layout_marginTop="2dp"/>
+            <TextView android:id="@+id/tvAptDateTime"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Date • Time" android:textSize="12sp"
+                android:textColor="@color/teal_primary" android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="⏰" android:textSize="22sp"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+
