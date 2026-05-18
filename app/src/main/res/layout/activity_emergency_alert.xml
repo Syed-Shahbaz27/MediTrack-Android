@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    EmergencyAlertActivity — Bluetooth Sub-Activity matching prototype Screen 10.
+    Big red circular SOS button — press and hold 2 seconds triggers SMS.
+    Emergency contact number is loaded from the users table at runtime.
+    The Bluetooth icon emoji represents the Bluetooth alert concept from the prototype.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <!-- ── Teal Toolbar ─────────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/teal_primary"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="←"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MediTrack ❤"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <View android:layout_width="40dp" android:layout_height="40dp"/>
+    </LinearLayout>
+
+    <!-- ── Centred Content ───────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="24dp">
+
+        <!-- Title Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Emergency Alert"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="@color/teal_primary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚨"
+                android:textSize="28sp"/>
+        </LinearLayout>
+
+        <!-- Instruction text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Press and Hold to send Emergency Alert"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_grey"
+            android:gravity="center"
+            android:layout_marginBottom="36dp"/>
+
+        <!--
+            SOS Button — circular via cornerRadius = half of width/height.
+            Width and height are both 180dp, so cornerRadius = 90dp makes a perfect circle.
+        -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSOS"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:text="SOS"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/sos_red"
+            app:cornerRadius="90dp"
+            android:layout_marginBottom="44dp"/>
+
+        <!-- Emergency contact loaded from users table at runtime -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvEmergencyLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Contact"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_grey"/>
+
+                <TextView
+                    android:id="@+id/tvEmergencyNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+968-XXXXXXXX"
+                    android:textSize="14sp"
+                    android:textColor="@color/medium_grey"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- Bluetooth icon emoji matching prototype -->
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="🔵"
+                android:textSize="32sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <!-- Footer note -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alert sent Via SMS to emergency contacts"
+            android:textSize="14sp"
+            android:textColor="@color/medium_grey"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</LinearLayout>
