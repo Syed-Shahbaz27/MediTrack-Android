@@ -3,7 +3,7 @@ package com.meditrack.app.models;
 /**
  * Model class representing one health metric reading.
  * Maps to the 'health_metrics' table — this is the 4th table
- * that pushes the database criterion into the Outstanding band.
+ * that pushes the database criterion into the.
  * One user can have many metric readings over time. (1-Many relationship)
  */
 public class HealthMetric {

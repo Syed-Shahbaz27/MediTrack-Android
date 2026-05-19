@@ -50,7 +50,7 @@ public class MedicationListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_list);
-
+        findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
         dbHelper       = DatabaseHelper.getInstance(this);
         sessionManager = new SessionManager(this);
         recyclerView   = findViewById(R.id.recyclerMedications);

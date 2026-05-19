@@ -29,7 +29,7 @@ import com.meditrack.app.models.User;
  *   If the email already exists, registerUser() returns -1 → show error.
  *   If success → navigate to LoginActivity.
  *
- * MARKS: Proper client-side AND server-side (database) validation = Outstanding.
+ * Proper client-side AND server-side (database) validation  is achieved here.
  */
 public class RegisterActivity extends AppCompatActivity {
 

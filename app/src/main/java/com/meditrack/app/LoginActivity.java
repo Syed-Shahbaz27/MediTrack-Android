@@ -28,7 +28,7 @@ import java.util.Locale;
  *   2. Validate fields are not empty.
  *   3. Call DatabaseHelper.validateLogin() — checks against SQLite.
  *   4. If valid:
- *      a. Update last_login timestamp in database (for Outstanding marking).
+ *      a. Update last_login timestamp in database.
  *      b. Save session to SharedPreferences via SessionManager.
  *      c. Navigate to MainActivity, clear back stack.
  *   5. If invalid → show error on email field.
@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user != null) {
             // ── SUCCESS ──────────────────────────────────────────────────────
 
-            // 1. Get current timestamp for "last login" display (Outstanding band)
+            // 1. Get current timestamp for "last login" display
             String currentTime = new SimpleDateFormat(
                     "dd MMM yyyy, hh:mm a", Locale.getDefault()
             ).format(new Date());

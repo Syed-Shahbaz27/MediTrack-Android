@@ -21,28 +21,22 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * AddAppointmentActivity — Sub-Activity for booking a new appointment.
- *
- * WHY DatePickerDialog?
- * Prevents the user typing an invalid date like "32/13/2026".
- * Calendar.getInstance() opens the picker on today's date automatically.
- * month + 1 is needed because Calendar months are 0-indexed (January = 0).
- *
- * WHY finish() after saving?
- * finish() pops this activity off the back stack and returns to
- * AppointmentActivity. AppointmentActivity.onResume() then reloads
- * the list from SQLite so the new appointment appears immediately.
+ * AddAppointmentActivity — handles both ADD and EDIT appointment.
+ * Same dual-mode pattern as AddMedicationActivity.
+ * isEditMode = true when "appointment_id" extra is present in the Intent.
  */
 public class AddAppointmentActivity extends AppCompatActivity {
 
-    // ── View references ──────────────────────────────────────────────────────
     private TextInputLayout   tilDoctorName, tilClinic;
     private TextInputEditText etDoctorName, etClinic, etAptDate, etAptTime;
     private Spinner           spinnerSpecialty;
+    private MaterialButton    btnSave;
 
-    // ── Data helpers ─────────────────────────────────────────────────────────
     private DatabaseHelper dbHelper;
     private SessionManager sessionManager;
+
+    private boolean isEditMode    = false;
+    private int     editAptId     = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +46,6 @@ public class AddAppointmentActivity extends AppCompatActivity {
         dbHelper         = DatabaseHelper.getInstance(this);
         sessionManager   = new SessionManager(this);
 
-        // Bind all views
         tilDoctorName    = findViewById(R.id.tilDoctorName);
         tilClinic        = findViewById(R.id.tilClinic);
         etDoctorName     = findViewById(R.id.etDoctorName);
@@ -60,138 +53,113 @@ public class AddAppointmentActivity extends AppCompatActivity {
         etAptDate        = findViewById(R.id.etAptDate);
         etAptTime        = findViewById(R.id.etAptTime);
         spinnerSpecialty = findViewById(R.id.spinnerSpecialty);
+        btnSave          = findViewById(R.id.btnSaveAppointment);
 
         setupSpecialtySpinner();
         setupDatePicker();
         setupTimePicker();
 
-        findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
+        // Check for edit mode
+        if (getIntent().hasExtra("appointment_id")) {
+            isEditMode = true;
+            editAptId  = getIntent().getIntExtra("appointment_id", -1);
+            prefillFields();
+            btnSave.setText("UPDATE APPOINTMENT");
+        }
 
-        ((MaterialButton) findViewById(R.id.btnSaveAppointment))
-                .setOnClickListener(v -> saveAppointment());
+        findViewById(R.id.btnBack).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+        btnSave.setOnClickListener(v -> saveAppointment());
     }
 
-    /**
-     * Fills the Specialty spinner with common medical specialties.
-     * ArrayAdapter bridges our String[] to the Spinner widget.
-     * simple_spinner_item     = the single collapsed line when closed.
-     * simple_spinner_dropdown = the expanded list when the user taps it.
-     */
+    private void prefillFields() {
+        etDoctorName.setText(getIntent().getStringExtra("doctor_name"));
+        etClinic.setText(getIntent().getStringExtra("clinic"));
+        etAptDate.setText(getIntent().getStringExtra("apt_date"));
+        etAptTime.setText(getIntent().getStringExtra("apt_time"));
+
+        String spec = getIntent().getStringExtra("specialty");
+        String[] specialties = {
+                "General Physician", "Cardiology", "Endocrinology",
+                "Dermatology", "Orthopedics", "Neurology", "Other"
+        };
+        for (int i = 0; i < specialties.length; i++) {
+            if (specialties[i].equals(spec)) {
+                spinnerSpecialty.setSelection(i);
+                break;
+            }
+        }
+    }
+
     private void setupSpecialtySpinner() {
         String[] specialties = {
-                "General Physician",
-                "Cardiology",
-                "Endocrinology",
-                "Dermatology",
-                "Orthopedics",
-                "Neurology",
-                "Other"
+                "General Physician", "Cardiology", "Endocrinology",
+                "Dermatology", "Orthopedics", "Neurology", "Other"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                specialties
-        );
+                this, android.R.layout.simple_spinner_item, specialties);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSpecialty.setAdapter(adapter);
     }
 
-    /**
-     * Tapping the date field shows Android's built-in calendar picker.
-     * We pre-open it on today's date using Calendar.getInstance().
-     * month + 1 converts from 0-indexed (Jan=0) to human-readable (Jan=1).
-     */
     private void setupDatePicker() {
         etAptDate.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
-            new DatePickerDialog(
-                    this,
+            new DatePickerDialog(this,
                     (view, year, month, day) -> etAptDate.setText(
-                            String.format(Locale.getDefault(), "%02d/%02d/%04d", day, month + 1, year)
-                    ),
+                            String.format(Locale.getDefault(), "%02d/%02d/%04d", day, month + 1, year)),
                     cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH),
-                    cal.get(Calendar.DAY_OF_MONTH)
-            ).show();
+                    cal.get(Calendar.DAY_OF_MONTH)).show();
         });
     }
 
-    /**
-     * Tapping the time field shows Android's built-in clock picker.
-     * false = 12-hour format with AM/PM, matching the prototype design.
-     * Default is 10:00 AM which is a sensible appointment start time.
-     */
     private void setupTimePicker() {
         etAptTime.setOnClickListener(v -> {
-            new TimePickerDialog(
-                    this,
-                    (view, hour, minute) -> {
-                        String amPm = hour < 12 ? "AM" : "PM";
-                        int displayHour = hour % 12;
-                        if (displayHour == 0) displayHour = 12;
-                        etAptTime.setText(
-                                String.format(Locale.getDefault(), "%02d:%02d %s",
-                                        displayHour, minute, amPm)
-                        );
-                    },
-                    10, 0, false
-            ).show();
+            new TimePickerDialog(this, (view, hour, minute) -> {
+                String amPm = hour < 12 ? "AM" : "PM";
+                int h = hour % 12;
+                if (h == 0) h = 12;
+                etAptTime.setText(
+                        String.format(Locale.getDefault(), "%02d:%02d %s", h, minute, amPm));
+            }, 10, 0, false).show();
         });
     }
 
-    /**
-     * Validates all inputs, then saves to SQLite via DatabaseHelper.
-     * All errors appear on the specific field that failed — not as a generic Toast.
-     * Only after all checks pass do we call dbHelper.addAppointment().
-     */
     private void saveAppointment() {
-        // Read all field values
         String doctor    = etDoctorName.getText().toString().trim();
         String clinic    = etClinic.getText().toString().trim();
         String date      = etAptDate.getText().toString().trim();
         String time      = etAptTime.getText().toString().trim();
         String specialty = spinnerSpecialty.getSelectedItem().toString();
 
-        // Clear previous errors before re-validating
         tilDoctorName.setError(null);
         tilClinic.setError(null);
 
-        // Validate — stop at first failure
-        if (TextUtils.isEmpty(doctor)) {
-            tilDoctorName.setError("Doctor name is required");
-            return;
-        }
-        if (TextUtils.isEmpty(clinic)) {
-            tilClinic.setError("Clinic location is required");
-            return;
-        }
-        if (date.equals("Select date") || TextUtils.isEmpty(date)) {
-            Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        if (TextUtils.isEmpty(doctor)) { tilDoctorName.setError("Doctor name required"); return; }
+        if (TextUtils.isEmpty(clinic)) { tilClinic.setError("Clinic required"); return; }
+        if (TextUtils.isEmpty(date) || date.equals("Select date")) {
+            Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show(); return; }
 
-        // All valid — build the Appointment object and save
         Appointment apt = new Appointment(
-                sessionManager.getUserId(),
-                doctor,
-                specialty,
-                clinic,
-                date,
-                time,
-                true  // reminder enabled by default
-        );
+                sessionManager.getUserId(), doctor, specialty, clinic, date, time, true);
 
-        long result = dbHelper.addAppointment(apt);
-
-        if (result != -1) {
-            Toast.makeText(this,
-                    "Appointment with Dr. " + doctor + " saved!",
-                    Toast.LENGTH_SHORT).show();
-            finish(); // Return to AppointmentActivity — onResume reloads the list
+        if (isEditMode) {
+            apt.setAppointmentId(editAptId);
+            boolean updated = dbHelper.updateAppointment(apt);
+            if (updated) {
+                Toast.makeText(this, "Appointment updated!", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Toast.makeText(this, "Update failed.", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this,
-                    "Failed to save. Please try again.",
-                    Toast.LENGTH_SHORT).show();
+            long result = dbHelper.addAppointment(apt);
+            if (result != -1) {
+                Toast.makeText(this, "Appointment saved!", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Toast.makeText(this, "Failed to save.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

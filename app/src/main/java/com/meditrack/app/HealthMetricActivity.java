@@ -22,7 +22,7 @@ import java.util.Locale;
 /**
  * HealthMetricActivity — Sub-Activity for logging health readings.
  *
- * SAVES TO: health_metrics — the 4th DB table, required for Outstanding marks.
+ * SAVES TO: health_metrics — the 4th DB table, required.
  *
  * VALIDATION RULE:
  * All three fields are optional individually, but at least one must have a value.
@@ -53,6 +53,7 @@ public class HealthMetricActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_metric);
+        findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
 
         dbHelper       = DatabaseHelper.getInstance(this);
         sessionManager = new SessionManager(this);

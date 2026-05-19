@@ -73,6 +73,19 @@ public class AppointmentActivity extends AppCompatActivity {
             holder.tvSpecialty.setText(apt.getSpecialty());
             holder.tvDateTime.setText(apt.getAppointmentDate() + " • " + apt.getAppointmentTime());
 
+            // SHORT TAP — open edit screen with this appointment's data pre-filled
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(AppointmentActivity.this, AddAppointmentActivity.class);
+                intent.putExtra("appointment_id", apt.getAppointmentId());
+                intent.putExtra("doctor_name",    apt.getDoctorName());
+                intent.putExtra("specialty",      apt.getSpecialty());
+                intent.putExtra("clinic",         apt.getClinicLocation());
+                intent.putExtra("apt_date",       apt.getAppointmentDate());
+                intent.putExtra("apt_time",       apt.getAppointmentTime());
+                startActivity(intent);
+            });
+
+            // LONG PRESS — delete with confirmation
             holder.itemView.setOnLongClickListener(v -> {
                 new AlertDialog.Builder(AppointmentActivity.this)
                         .setTitle("Delete Appointment")

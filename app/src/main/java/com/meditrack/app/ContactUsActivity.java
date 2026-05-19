@@ -37,7 +37,6 @@ public class ContactUsActivity extends AppCompatActivity {
         etName     = findViewById(R.id.etName);
         etEmail    = findViewById(R.id.etEmail);
         etMessage  = findViewById(R.id.etMessage);
-
         findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
         ((MaterialButton) findViewById(R.id.btnSend)).setOnClickListener(v -> sendEmail());
     }

@@ -70,7 +70,6 @@ public class SessionManager {
     /**
      * Returns when user last logged in.
      * Shown on dashboard = "Last login: 10 May 2026, 3:45 PM"
-     * This is what puts the Implementation criterion into Excellent/Outstanding band.
      */
     public String getLastLogin() {
         return prefs.getString(KEY_LAST_LOGIN, "First login");

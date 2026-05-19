@@ -15,7 +15,7 @@ import com.meditrack.app.database.DatabaseHelper;
 import com.meditrack.app.models.User;
 
 /**
- * ForgotPasswordActivity — required for the Outstanding Implementation band.
+ * ForgotPasswordActivity is really necessary for any password reset.
  *
  * TWO-STEP FLOW:
  * Step 1: User enters their registered email.
@@ -35,7 +35,7 @@ import com.meditrack.app.models.User;
  * WHY TWO STEPS instead of one form?
  * Security UX: showing the password fields only after confirming the email exists
  * prevents revealing to an attacker which emails are registered vs not registered.
- * Explain this reasoning in your VIVA — it shows security awareness.
+ * it shows security awareness.
  */
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -53,6 +53,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+        findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
 
         dbHelper = DatabaseHelper.getInstance(this);
 

@@ -74,7 +74,7 @@ public class EmergencyAlertActivity extends AppCompatActivity {
         setupSosButton();
 
         // Back arrow
-        findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
+        findViewById(R.id.btnBack).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     /**

@@ -18,15 +18,14 @@ import java.util.List;
  * Libraries like MPAndroidChart add ~1MB to the APK and require extra
  * Gradle dependencies. For a simple weight/glucose trend line,
  * drawing directly on Canvas is lightweight and shows the marker
- * you understand Android's drawing API — good for VIVA marks.
+ * you understand Android's drawing API .
  *
  * HOW IT WORKS:
  * Step 1 — HealthMetricActivity calls setData(list of floats).
  * Step 2 — setData() calls invalidate() which schedules a redraw.
  * Step 3 — Android calls onDraw(Canvas) on the next frame.
  * Step 4 — onDraw() uses Paint objects to draw background, grid, line, dots.
- *
- * VIVA EXPLANATION:
+
  * Canvas = a blank sheet of paper.
  * Paint  = the brush (color, stroke width, style).
  * Path   = a sequence of points joined by lines.

@@ -27,7 +27,7 @@ import java.util.List;
  *   3. appointments   — medical appointments per user (FK → users)
  *   4. health_metrics — blood pressure/glucose/weight readings (FK → users)
  *
- * Having 4 tables with FK relationships = Outstanding band on Database criterion.
+ * Having 4 tables with FK relationships = .
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -243,7 +243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * UPDATE the last_login timestamp — called right after successful login.
-     * This provides the "last access details" required for Excellent/Outstanding band.
+     * This provides us the "last access details" .
      */
     public void updateLastLogin(int userId, String timestamp) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -428,6 +428,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return result;
     }
+    public boolean updateAppointment(Appointment appointment) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_APT_DOCTOR,   appointment.getDoctorName());
+        values.put(COL_APT_SPEC,     appointment.getSpecialty());
+        values.put(COL_APT_CLINIC,   appointment.getClinicLocation());
+        values.put(COL_APT_DATE,     appointment.getAppointmentDate());
+        values.put(COL_APT_TIME,     appointment.getAppointmentTime());
+        values.put(COL_APT_REMINDER, appointment.isReminderEnabled() ? 1 : 0);
+        int rows = db.update(TABLE_APPOINTMENTS, values,
+                COL_APT_ID + "=?",
+                new String[]{String.valueOf(appointment.getAppointmentId())});
+        db.close();
+        return rows > 0;
+    }
+
 
     public List<Appointment> getAppointmentsByUser(int userId) {
         List<Appointment> list = new ArrayList<>();
